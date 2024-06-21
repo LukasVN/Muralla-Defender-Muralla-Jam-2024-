@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     //Archer stats
     public float archerSpeed;
     public int archerHP;
+    public float ArcherProjectileSpeed;
+
     //Big Archer
     public float bigarcherSpeed;
     public int bigarcherHP;
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
     //Variables to increase difficulty
     public List<GameObject> enemies = new List<GameObject>();
     private float timeElapsed;
+    private bool boostedSpeed_final;
+
     private void Awake() {
         Instance = this;
     }
@@ -63,10 +67,6 @@ public class GameManager : MonoBehaviour
     }
 
     void Update(){
-        if(gameOver){
-            return;
-        }
-
         //Difficulty based on score
         // switch (currentScorevalue)
         // {
@@ -93,41 +93,87 @@ public class GameManager : MonoBehaviour
             float timeElapsed = Time.timeSinceLevelLoad;
             float[] probabilities;
             
-            if (timeElapsed > 15 && timeElapsed < 30)
+            if (timeElapsed > 10 && timeElapsed < 20)
             {
                 probabilities = new float[] { 0.65f, 0.2f, 0.1f, 0.1f }; // Probabilities for enemies
-                if(spawnCooldown <=  2.75f){
+                if(spawnCooldown >=  2.75f){
                     spawnCooldown = 2.75f;
                 }
             }
-            else if(timeElapsed > 45 && timeElapsed < 60){
+            else if(timeElapsed > 20 && timeElapsed < 30){
                 probabilities = new float[] { 0.6f, 0.25f, 0.15f, 0.15f }; // Probabilities for enemies
-                if(spawnCooldown <=  2.5f){
+                if(spawnCooldown >=  2.5f){
                     spawnCooldown = 2.5f;
                 }
             }
-            else if(timeElapsed > 75 && timeElapsed < 90){
+            else if(timeElapsed > 30 && timeElapsed < 40){
                 probabilities = new float[] { 0.6f, 0.25f, 0.18f, 0.18f }; // Probabilities for enemies
-                if(spawnCooldown <=  2.25f){
+                if(spawnCooldown >=  2.25f){
                     spawnCooldown = 2.25f;
                 }
             }
-            else if(timeElapsed > 105 && timeElapsed < 120){
+            else if(timeElapsed > 50 && timeElapsed < 60){
                 probabilities = new float[] { 0.5f, 0.3f, 0.2f, 0.2f }; // Probabilities for enemies
-                if(spawnCooldown <= 2f){
+                if(spawnCooldown >= 2f){
                     spawnCooldown = 2f;
                 }
             }
-            else if(timeElapsed > 135){
-                probabilities = new float[] { 0.5f, 0.3f, 0.2f, 0.2f }; // Probabilities for enemies
+            else if(timeElapsed > 60 && timeElapsed < 70){
+                probabilities = new float[] { 0.4f, 0.4f, 0.3f, 0.3f }; // Probabilities for enemies
                 if(!boostedSpeed){
                     boostedSpeed = true;
                     basicBarbSpeed = basicBarbSpeed*1.15f;
                     bigBarbSpeed = bigBarbSpeed*1.15f;
                     archerSpeed = archerSpeed*1.15f;
                     bigarcherSpeed = bigarcherSpeed*1.15f;
+                    ArcherProjectileSpeed = ArcherProjectileSpeed *1.15f;
+                }
+                if(spawnCooldown >= 1.75f){
+                    spawnCooldown = 1.75f;
                 }
             }
+            else if(timeElapsed > 70 && timeElapsed < 80){
+                probabilities = new float[] { 0.4f, 0.4f, 0.5f, 0.5f }; // Probabilities for enemies
+                if(spawnCooldown >= 1.5f){
+                    spawnCooldown = 1.5f;
+                }
+            }
+            else if(timeElapsed > 80 && timeElapsed < 90){
+                probabilities = new float[] { 0.3f, 0.3f, 0.6f, 0.6f }; // Probabilities for enemies
+                if(spawnCooldown >= 1.25f){
+                    spawnCooldown = 1.25f;
+                }
+            }
+            else if(timeElapsed > 90 && timeElapsed < 100){
+                probabilities = new float[] { 0.3f, 0.3f, 0.6f, 0.6f }; // Probabilities for enemies
+                if(spawnCooldown >= 1.25f){
+                    spawnCooldown = 1.25f;
+                }
+                if(!boostedSpeed_final){
+                    boostedSpeed = true;
+                    basicBarbSpeed = basicBarbSpeed*1.15f;
+                    bigBarbSpeed = bigBarbSpeed*1.15f;
+                    archerSpeed = archerSpeed*1.15f;
+                    bigarcherSpeed = bigarcherSpeed*1.15f;
+                    ArcherProjectileSpeed = ArcherProjectileSpeed *1.15f;
+                }
+            }
+            else if(timeElapsed > 100 && timeElapsed < 110){
+                probabilities = new float[] { 0.2f, 0.2f, 0.7f, 0.7f }; // Probabilities for enemies
+                if(spawnCooldown >= 1f){
+                    spawnCooldown = 1f;
+                }
+                if(!boostedSpeed_final){
+                    boostedSpeed_final = true;
+                    basicBarbSpeed = basicBarbSpeed*1.15f;
+                    bigBarbSpeed = bigBarbSpeed*1.15f;
+                    archerSpeed = archerSpeed*1.15f;
+                    bigarcherSpeed = bigarcherSpeed*1.15f;
+                    ArcherProjectileSpeed = ArcherProjectileSpeed *1.15f;
+                }
+            }
+
+            
             else
             {
                 probabilities = new float[] { 0.7f, 0.1f, 0.05f, 0.025f }; // Higher probability for enemies[0] early on
@@ -179,6 +225,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameOverScreen.SetActive(true);
         CheckHighScore();
+        DeactivatePowerUpScreen();
     }
 
     private void RestartGame(){

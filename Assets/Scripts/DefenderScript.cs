@@ -8,8 +8,10 @@ public class DefenderScript : MonoBehaviour
     public static DefenderScript Instance;
     public AudioSource arrowShotSource;
     public AudioSource arrowHitSource;
+    public AudioSource crateBreakSource;
     public AudioClip arrowShot;
     public AudioClip arrowHit;
+    public AudioClip breakingCrate;
     public float speed; // Speed of the player
     public GameObject projectile;
     public GameObject powerUpProjectile;
@@ -21,7 +23,7 @@ public class DefenderScript : MonoBehaviour
     private float shootCooldown;
     private float defaultCooldownTime;
     private float cooldownTime = 0.2f; 
-    private bool tripleShot;
+    public bool tripleShot;
 
     private void Awake() {
         Instance = this;
@@ -30,6 +32,7 @@ public class DefenderScript : MonoBehaviour
     private void Start() {
         arrowHitSource = GetComponent<AudioSource>();
         arrowShotSource = GetComponent<AudioSource>();
+        crateBreakSource = GetComponent<AudioSource>();
         defaultCooldownTime = cooldownTime;
         defaultProjectile = projectile;
         shootCooldown = 0;

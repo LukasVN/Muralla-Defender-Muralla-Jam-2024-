@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 77559684, guid: 7062871b9dc224d419bc3d0973b41ac1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,9 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c61cb6d5e1d904baa1dfb0c832f22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowShotSource: {fileID: 0}
+  arrowHitSource: {fileID: 0}
+  crateBreakSource: {fileID: 0}
+  arrowShot: {fileID: 0}
+  arrowHit: {fileID: 0}
+  breakingCrate: {fileID: 0}
   speed: 5
   projectile: {fileID: 8523386360832650857, guid: b8452ab83a316b542ba78e308614412b, type: 3}
   powerUpProjectile: {fileID: 8523386360832650857, guid: 7888272403f7daa4db6dce652e7eb100, type: 3}
+  tripleShot: 0
 --- !u!95 &6032526910664341998
 Animator:
   serializedVersion: 5

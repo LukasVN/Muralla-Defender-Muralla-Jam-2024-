@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ArcherProjectile : MonoBehaviour
 {
-    public float projectileSpeed;
+    private float projectileSpeed;
     private float damage;
     private Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         damage = GameManager.Instance.archerProjectileDamage;
+        projectileSpeed = GameManager.Instance.ArcherProjectileSpeed;
     }
 
     void Update()
