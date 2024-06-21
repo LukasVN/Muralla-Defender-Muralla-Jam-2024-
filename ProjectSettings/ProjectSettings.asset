@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Lunvarian Games
   productName: Muralla Defender (Muralla Jam 2024)
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -39,13 +39,15 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: bd4a1c8c0d36eae4b8582282ea7489d6, type: 3}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidthWeb: 630
+  defaultScreenHeightWeb: 500
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   unsupportedMSAAFallback: 0
@@ -547,7 +549,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: APPLICATION:Minimal
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -594,8 +596,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Muralla Defender (Muralla Jam 2024)
-  metroPackageVersion: 
+  metroPackageName: MurallaDefenderMurallaJam2024
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -603,7 +605,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Muralla Defender (Muralla Jam 2024)
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Muralla Defender (Muralla Jam 2024)
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

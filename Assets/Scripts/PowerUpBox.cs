@@ -4,21 +4,54 @@ using UnityEngine;
 
 public class PowerUpBox : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject,3f);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Player"){
-            Debug.Log("TriggerPowerUp");
+            GameManager.Instance.activePowerUp = true;
+            int randomPowerUp = Random.Range(0,5);
+            switch (randomPowerUp)
+            {
+                case 0:
+                    Debug.Log("+ WALL HEALTH");
+                    GameManager.Instance.wallHealth.value += 0.15f;
+                    GameManager.Instance.activePowerUp = false;
+                    Destroy(gameObject);
+                    //Anim goes here
+                break;
+                case 1:
+                    Debug.Log("X2 Damage");
+                    DefenderScript.Instance.ActivateProjectilePowerUp();
+                    GameManager.Instance.powerUpProjectileState = true;
+                    GameManager.Instance.ShowActivatedPowerUp(randomPowerUp);
+                    Destroy(gameObject);
+                break;
+                case 2:
+                    Debug.Log("Piercing Damage");
+                    GameManager.Instance.ActivateProjectilePiercing();
+                    GameManager.Instance.ShowActivatedPowerUp(randomPowerUp);
+                    Destroy(gameObject);
+                    //Anim goes here
+                break;
+                case 3:
+                    Debug.Log("x2 Shoot Speed");
+                    DefenderScript.Instance.ActivateDoubleSpeedShooting();
+                    GameManager.Instance.ShowActivatedPowerUp(randomPowerUp);
+                    Destroy(gameObject);
+                    //Anim goes here
+                break;
+                case 4:
+                    Debug.Log("Triple shot");
+                    DefenderScript.Instance.ActivateTripleShot();
+                    GameManager.Instance.ShowActivatedPowerUp(randomPowerUp);
+                    Destroy(gameObject);
+                    //Anim goes here
+                break;
+                
+            }
         }
     }
 }

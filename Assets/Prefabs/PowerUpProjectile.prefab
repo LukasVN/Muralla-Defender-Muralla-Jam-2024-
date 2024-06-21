@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2015858845830465519}
   - component: {fileID: 2940410151252552098}
+  - component: {fileID: 5393044051221837047}
   - component: {fileID: -4429192716138183226}
   - component: {fileID: -2510353703121703267}
-  - component: {fileID: 3878114281343841766}
   m_Layer: 0
-  m_Name: ArcherProjectile
-  m_TagString: Projectile
+  m_Name: PowerUpProjectile
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.945554, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c518e3837a90bb04fb0cbe72ca7a0471, type: 3}
+  m_Color: {r: 1, g: 0.20525037, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,6 +87,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5393044051221837047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523386360832650857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb9ef4b9b48cf54e8446970a6738860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &-4429192716138183226
 Rigidbody2D:
   serializedVersion: 4
@@ -149,8 +161,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5625, y: 0.5625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -159,16 +171,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &3878114281343841766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8523386360832650857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11fe0868c0c2f84c864b54693c828a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileSpeed: 0.025

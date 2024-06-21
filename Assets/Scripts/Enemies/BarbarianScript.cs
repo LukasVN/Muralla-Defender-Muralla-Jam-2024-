@@ -29,6 +29,10 @@ public class BarbarianScript : MonoBehaviour
     public void ReceiveDamage(int damage){
         if(healthPoints - damage < 0){
             //Death Anim
+            int randomChance = Random.Range(0, 10);
+            if(!GameManager.Instance.activePowerUp && randomChance == 0){
+                Instantiate(GameManager.Instance.powerUpBox,transform.position,Quaternion.identity);
+            }
             Destroy(gameObject);
             GameManager.Instance.AddScore(scoreGiven);
         }

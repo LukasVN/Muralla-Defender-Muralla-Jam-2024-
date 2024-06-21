@@ -8,6 +8,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    //PowerUp variables
+    public GameObject powerUpBox;
+    public GameObject[] powerUpScreens;
+    public bool activePowerUp;
+    public bool powerUpProjectileState;
+    public bool powerUpProjectilePiercing;
 
     //UI related variables
     public GameObject gameOverScreen;
@@ -22,7 +28,6 @@ public class GameManager : MonoBehaviour
     public float projectileSpeed;
     public int projectileDamage;
     public int projectileSize;
-
     public float spawnCooldown;
 
     //Basic Barbarian stats
@@ -50,19 +55,28 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        boostedSpeed = false;
         Time.timeScale = 1;
         UpdateDisplay();
         gameOverScreen.SetActive(false);
-        gameOver = false;
         Application.targetFrameRate = 60;
         StartCoroutine("SpawnEnemies",spawnCooldown);
     }
 
     void Update(){
-        if(!gameOver){
-            timeElapsed += Time.deltaTime;
+        if(gameOver){
+            return;
         }
+
+        //Difficulty based on score
+        // switch (currentScorevalue)
+        // {
+        //     case 0:
+        //     break;
+            
+        // }
+
+        timeElapsed += Time.deltaTime;
+
         if(wallHealth.value <= 0 && !gameOver){
             SetGameOver();
         }
@@ -82,25 +96,25 @@ public class GameManager : MonoBehaviour
             if (timeElapsed > 15 && timeElapsed < 30)
             {
                 probabilities = new float[] { 0.65f, 0.2f, 0.1f, 0.1f }; // Probabilities for enemies
-                if(spawnCooldown != 2.75f){
+                if(spawnCooldown <=  2.75f){
                     spawnCooldown = 2.75f;
                 }
             }
             else if(timeElapsed > 45 && timeElapsed < 60){
                 probabilities = new float[] { 0.6f, 0.25f, 0.15f, 0.15f }; // Probabilities for enemies
-                if(spawnCooldown != 2.5f){
+                if(spawnCooldown <=  2.5f){
                     spawnCooldown = 2.5f;
                 }
             }
             else if(timeElapsed > 75 && timeElapsed < 90){
                 probabilities = new float[] { 0.6f, 0.25f, 0.18f, 0.18f }; // Probabilities for enemies
-                if(spawnCooldown != 2.25f){
+                if(spawnCooldown <=  2.25f){
                     spawnCooldown = 2.25f;
                 }
             }
             else if(timeElapsed > 105 && timeElapsed < 120){
                 probabilities = new float[] { 0.5f, 0.3f, 0.2f, 0.2f }; // Probabilities for enemies
-                if(spawnCooldown != 2f){
+                if(spawnCooldown <= 2f){
                     spawnCooldown = 2f;
                 }
             }
@@ -193,4 +207,48 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ActivateProjectilePiercing(){
+        powerUpProjectilePiercing = true;
+
+        Invoke("ResetProjectilePiercing",15);
+    }
+
+    private void ResetProjectilePiercing(){
+        powerUpProjectilePiercing = false;
+        activePowerUp = false;
+    }
+
+    public void ShowActivatedPowerUp(int powerUp){
+        switch(powerUp){
+            case 0:
+                powerUpScreens[powerUp].SetActive(true);
+                Invoke("DeactivatePowerUpScreen",3);
+            break;
+            case 1:
+                ActivatePowerUpScreen(powerUpScreens[powerUp]);
+            break;
+            case 2:
+                ActivatePowerUpScreen(powerUpScreens[powerUp]);
+            break;
+            case 3:
+                ActivatePowerUpScreen(powerUpScreens[powerUp]);
+            break;
+            case 4:
+                ActivatePowerUpScreen(powerUpScreens[powerUp]);
+            break;
+        }
+    }
+
+    private void ActivatePowerUpScreen(GameObject screen){
+        screen.SetActive(true);
+        Invoke("DeactivatePowerUpScreen",14);
+    }
+
+    private void DeactivatePowerUpScreen(){
+        foreach (GameObject screen in powerUpScreens){   
+            screen.SetActive(false);
+        }
+    }
+
+    
 }
