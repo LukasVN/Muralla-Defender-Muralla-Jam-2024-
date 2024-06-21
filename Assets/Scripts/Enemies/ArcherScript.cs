@@ -55,6 +55,8 @@ public class ArcherScript : MonoBehaviour
     }
 
     private IEnumerator ShootArrow(){
+        DefenderScript.Instance.arrowHitSource.Stop();
+        DefenderScript.Instance.arrowHitSource.PlayOneShot(DefenderScript.Instance.arrowHit);
         while(true){
             animator.SetTrigger("ShootArrow");
             GameObject arrow = Instantiate(archerProjectile,transform.position - Vector3.up/2, Quaternion.identity);

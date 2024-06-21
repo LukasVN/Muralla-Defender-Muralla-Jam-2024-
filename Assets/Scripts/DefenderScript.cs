@@ -6,6 +6,10 @@ using UnityEngine;
 public class DefenderScript : MonoBehaviour
 {
     public static DefenderScript Instance;
+    public AudioSource arrowShotSource;
+    public AudioSource arrowHitSource;
+    public AudioClip arrowShot;
+    public AudioClip arrowHit;
     public float speed; // Speed of the player
     public GameObject projectile;
     public GameObject powerUpProjectile;
@@ -24,6 +28,8 @@ public class DefenderScript : MonoBehaviour
     }
 
     private void Start() {
+        arrowHitSource = GetComponent<AudioSource>();
+        arrowShotSource = GetComponent<AudioSource>();
         defaultCooldownTime = cooldownTime;
         defaultProjectile = projectile;
         shootCooldown = 0;
@@ -59,6 +65,8 @@ public class DefenderScript : MonoBehaviour
         if(shootCooldown <= 0 && Input.GetKeyDown(KeyCode.Space)){
             animator.SetTrigger("ShootArrow");
             shootCooldown = cooldownTime;
+            arrowShotSource.Stop();
+            arrowShotSource.PlayOneShot(arrowShot);
             if(!tripleShot){
                 Instantiate(projectile,transform.position + Vector3.up, Quaternion.identity);
             }

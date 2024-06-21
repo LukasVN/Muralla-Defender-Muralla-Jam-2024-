@@ -27,6 +27,8 @@ public class BarbarianScript : MonoBehaviour
     }
 
     public void ReceiveDamage(int damage){
+        DefenderScript.Instance.arrowHitSource.Stop();
+        DefenderScript.Instance.arrowHitSource.PlayOneShot(DefenderScript.Instance.arrowHit);
         if(healthPoints - damage < 0){
             //Death Anim
             int randomChance = Random.Range(0, 10);
