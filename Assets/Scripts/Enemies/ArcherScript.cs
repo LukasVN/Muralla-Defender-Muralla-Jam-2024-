@@ -14,6 +14,7 @@ public class ArcherScript : MonoBehaviour
     private Color originalColor;
     private int healthPoints;
     private bool onRange;
+    private Animator animator;
     void Start()
     {
         onRange = false;
@@ -22,6 +23,7 @@ public class ArcherScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemyRenderer = GetComponent<Renderer>();
         originalColor = enemyRenderer.material.color; // Store the original color
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class ArcherScript : MonoBehaviour
 
     private IEnumerator ShootArrow(){
         while(true){
+            animator.SetTrigger("ShootArrow");
             GameObject arrow = Instantiate(archerProjectile,transform.position - Vector3.up/2, Quaternion.identity);
             arrow.GetComponent<SpriteRenderer>().flipY = true;
             yield return new WaitForSeconds(shootCooldown);
