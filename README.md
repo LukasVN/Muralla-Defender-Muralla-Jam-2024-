@@ -1,5 +1,7 @@
-Game fully developed by Lucas Varela Negro
+**Game fully developed by Lucas Varela Negro**
 
+---
 
-External Assets:
-Effect sounds from Pixabay
+## External Assets
+
+Effect sounds sourced from [Pixabay](https://pixabay.com/sound-effects/)
